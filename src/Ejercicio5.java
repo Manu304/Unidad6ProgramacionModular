@@ -25,7 +25,7 @@ public class Ejercicio5 {
     Scanner scanner = new Scanner(System.in);
     final int TOTAL_ALUMNOS = 100;
     int[] notas;
-    int contador = 0;
+    //int contador = 0;
     
     public Ejercicio5 (){
         char opcion = 'S';
@@ -34,7 +34,7 @@ public class Ejercicio5 {
             notas = new int[TOTAL_ALUMNOS];
             System.out.println("------INGRESANDO NOTAS------");
             pedirNotas();
-            float promedio = calculoPromedio();
+            float promedio = calculoPromedio(cantidadDeNotas());
             System.out.println("-----MEDIA DE LA NOTAS------");
             System.out.println("\nLa media de las notas ingresadas es: " + promedio);
             System.out.print("\nDesea ingresar otro grupo de notas? (S/N): ");
@@ -45,6 +45,7 @@ public class Ejercicio5 {
     }
     public void pedirNotas(){
         int notaIngresada = 0;
+        int contador = 0;
         
         do {
             System.out.print("Ingrese la nota: ");
@@ -64,12 +65,23 @@ public class Ejercicio5 {
             }
         } while (notaIngresada != (-50));
     }
-    public float calculoPromedio(){
+    public float calculoPromedio(int totalDatos){
         int suma = 0;
-        for (int i = 0; i <= contador; i++) {
+        for (int i = 0; i <= totalDatos; i++) {
             suma += notas[i];
         }
-        float promedio = (float) suma/(contador);
+        float promedio = (float) suma/(totalDatos);
         return promedio;
+    }
+    public int cantidadDeNotas(){
+        int cantidadNota = 0;
+        for (int i = 0; i < notas.length; i++) {
+            if (notas[i] > 0) {
+                cantidadNota++;
+            } else {
+                break;
+            }
+        }
+        return cantidadNota;
     }
 }
